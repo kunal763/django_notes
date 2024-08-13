@@ -33,3 +33,29 @@ all the errors which occur commonly
         class Meta:
             model=Tweet
             fields=['text','image']
+
+- Here is an example how to write a model 
+
+        1.one to many
+        2.many to many
+        3.one to one
+    while writing two and three you can use ```models.OnetoOneField(name_of_the_model,on_DELETE=cascade,related_name)```
+    and similarly ```models.ManytoManyField()```.
+
+    ```
+    from django.db import models
+    from django.contrib.auth.models import User
+    # Create your models here.
+
+    #one to many
+    #Foriegn key is used to describe one to many relation that means one user can have many Tweet
+    class Tweet(models.Model):
+        user=models.ForeignKey(User,on_delete=models.CASCADE)
+        image=models.ImageField(upload_to='photos/')
+        time_created=models.DateTimeField(auto_now_add=True)
+        updated_at=models.DateTimeField(auto_now=True)
+        text=models.TextField(max_length=200)
+
+        def __str__(self):
+            return f'tweeted by {self.user}'
+    
