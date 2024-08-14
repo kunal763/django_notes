@@ -59,3 +59,4 @@ all the errors which occur commonly
         def __str__(self):
             return f'tweeted by {self.user}'
     
+- If you want to update date automatically at every time you can use ```updated_at=DateTimeField(auto_now=true)``` or if you only want to change the date at the time of creation of you can use ```created_at=DateTimeField(auto_now_add=true)```
