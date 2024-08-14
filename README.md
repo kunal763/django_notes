@@ -60,3 +60,12 @@ all the errors which occur commonly
             return f'tweeted by {self.user}'
     
 - If you want to update date automatically at every time you can use ```updated_at=DateTimeField(auto_now=true)``` or if you only want to change the date at the time of creation of you can use ```created_at=DateTimeField(auto_now_add=true)```
+
+
+## QuerySet 
+- How to query from Model
+[Get Method](https://www.w3schools.com/django/django_queryset_get.php)
+[Filter Method](https://www.w3schools.com/django/django_queryset_filter.php)
+[Order By Method](https://www.w3schools.com/django/django_queryset_orderby.php)
+
+- get gives you one object while filter returns rows that matches the description order by orders the  data
