@@ -69,3 +69,8 @@ all the errors which occur commonly
 [Order By Method](https://www.w3schools.com/django/django_queryset_orderby.php)
 
 - get gives you one object while filter returns rows that matches the description order by orders the  data
+
+-How to send the user to the page from where he came and make a generic ```GO BACK```link
+    ```
+    <a href="{{request.META.HTTP_REFERER}}">GO BACK</a>
+    ```
