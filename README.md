@@ -74,3 +74,41 @@ all the errors which occur commonly
     ```
     <a href="{{request.META.HTTP_REFERER}}">GO BACK</a>
     ```
+
+### Query Parameter
+    
+    def my_view(request):
+        name = request.GET.get('name', 'Guest')
+        return HttpResponse("Hello, " + name)
+    
+    In this example, if the URL is http://example.com/?name=Alice, the view will respond with "Hello, Alice". If the name parameter is not provided, it will respond with "Hello, Guest
+
+In Django, request.GET is a dictionary-like object that provides access to the query parameters sent in a GET request.
+It specifically uses the QueryDict class, which offers several methods to access and manipulate the data:
+- get(key, default=None): Retrieves the value associated with the specified key. If the key is not found, it returns the default value (which is None by default).
+- keys(): Returns a list of all keys in the query parameter dictionary.
+- values(): Returns a list of all values in the query parameter dictionary.
+- items(): Returns a list of key-value pairs (tuples) in the query parameter dictionary.
+- copy(): Returns a copy of the QueryDict.
+- urlencode(): Returns a URL-encoded string representation of the query parameters.
+
+## Search Parameter
+  ```
+    from django.shortcuts import render,redirect
+    from .models import Topic,Message,Room
+    from .forms import RoomForm
+    from django.db.models import Q
+    # Create your views here.
+ 
+    def home(request):
+        q=request.GET.get('q') if request.GET.get('q')!=None else ""
+        topics=Topic.objects.all()
+        rooms=Room.objects.filter(Q(topic__name__icontains=q)|Q(name__icontains=q)|Q(host__username__icontains=q))
+        return render(request,'base/index.html',{'rooms':rooms,'topics':topics})
+  ```
+Search bar html,See how name q is given in input and action GET is used to create the form
+```
+    <form class="d-flex" role="search" method="GET" action="{% url "home" %}">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
