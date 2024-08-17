@@ -98,6 +98,8 @@ It specifically uses the QueryDict class, which offers several methods to access
     from .models import Topic,Message,Room
     from .forms import RoomForm
     from django.db.models import Q
+    from django.contrib import messages
+    from django.contrib.auth import login,authenticate,logout
     # Create your views here.
  
     def home(request):
@@ -112,3 +114,13 @@ Search bar html,See how name q is given in input and action GET is used to creat
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+```
+## How to check the user is authenticated and display stuff like this
+```
+    {% if request.user.is_authenticated %}
+    <a href="{% url "logout" %}">logout</a>
+    {% else %}
+    <a href="{% url "login" %}">login</a>
+    {% endif %}
+
+```
