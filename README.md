@@ -124,3 +124,13 @@ Search bar html,See how name q is given in input and action GET is used to creat
     {% endif %}
 
 ```
+## What  if we want to send 2 
+```
+     path('delete/<str:pk>/<str:room_pk>/',views.deleteMessage,name='delete'),
+
+
+    {% if message.user == request.user %}
+         <a href="{% url "delete" pk=message.id room_pk=room.id%}">Delete Message</a>
+    {% endif %}
+```
+
