@@ -134,3 +134,4 @@ Search bar html,See how name q is given in input and action GET is used to creat
     {% endif %}
 ```
 
+# DJANGO -REST FRAMEWORK 
