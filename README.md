@@ -134,4 +134,37 @@ Search bar html,See how name q is given in input and action GET is used to creat
     {% endif %}
 ```
 
-# DJANGO -REST FRAMEWORK 
+
+# Django Rest Framework
+
+- [django cors header](https://github.com/adamchainz/django-cors-headers/tree/main)
+
+- make serialzer for json response 
+    ```
+    from rest_framework import serializers
+    from base.models import Room
+
+    class RoomSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Room
+        fields='__all__'
+        
+    ```
+    This is ModelSerializer you can also make your own Serializer 
+    It is just like form
+- write views which will send this data
+    ```
+    from rest_framework.decorators import api_view
+    from rest_framework.response import Response
+    from base.models import Room
+    from .serializers import RoomSerializer
+
+    
+    @api_view(['GET'])
+    def getRooms(request):
+    room=Room.objects.all()
+    serializer=RoomSerializer(room,many=True)
+    print(serializer)
+    return Response(serializer.data)
+
+    ```
