@@ -135,3 +135,4 @@ Search bar html,See how name q is given in input and action GET is used to creat
 ```
 
 # DJANGO -REST FRAMEWORK 
+- This is how we make api's in django rest
