@@ -168,3 +168,24 @@ Search bar html,See how name q is given in input and action GET is used to creat
     return Response(serializer.data)
 
     ```
+
+
+## Media Urls
+views.py
+```
+    from django.conf import settings
+    from django.conf.urls.static import static
+    
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        #...
+        #...
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+```
+
+Now the settings.py
+ ```
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    
+ ```
